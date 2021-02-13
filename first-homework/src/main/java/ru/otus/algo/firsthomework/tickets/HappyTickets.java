@@ -1,16 +1,15 @@
 package ru.otus.algo.firsthomework.tickets;
 
-import ru.otus.algo.testframe.service.TestExecutable;
-
 import java.util.Arrays;
 import java.util.List;
+import ru.otus.algo.testframe.service.TestExecutable;
 
 public class HappyTickets implements TestExecutable<Long> {
 
     public long getHappyTicketsCount(int n) {
         int resultN = 2 * n;
         int possibleNumbersSum = n * 9;
-        return getSum(resultN, possibleNumbersSum);
+        return getHappyTicketCount(resultN, possibleNumbersSum);
     }
 
     /*
@@ -20,18 +19,18 @@ public class HappyTickets implements TestExecutable<Long> {
      *        l = 0
      */
 
-    private long getSum(int n, int k) {
-        long sum = 0;
-        if (n > 1) {
-            for (int l = 0; l < 10; l++) {
-                sum += getSum(n - 1, k - l);
+    private long getHappyTicketCount(int digitN, int sumOfNumbers) {
+        long happyTicketCount = 0;
+        if (digitN > 1) {
+            for (int possibleNumber = 0; possibleNumber < 10; possibleNumber++) {
+                happyTicketCount += getHappyTicketCount(digitN - 1, sumOfNumbers - possibleNumber);
             }
         } else {
-            if (k >= 0 && k <= 9) {
-                sum += 1;
+            if (sumOfNumbers >= 0 && sumOfNumbers <= 9) {
+                happyTicketCount += 1;
             }
         }
-        return sum;
+        return happyTicketCount;
     }
 
     @Override
