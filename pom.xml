@@ -11,6 +11,7 @@
     <modules>
         <module>test-framework</module>
         <module>first-homework</module>
+      <module>chess-third-homework</module>
     </modules>
 
     <packaging>pom</packaging>
