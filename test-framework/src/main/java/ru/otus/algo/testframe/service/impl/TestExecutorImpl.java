@@ -1,14 +1,15 @@
 package ru.otus.algo.testframe.service.impl;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import ru.otus.algo.testframe.model.TestData;
 import ru.otus.algo.testframe.service.TestDataReader;
 import ru.otus.algo.testframe.service.TestExecutable;
 import ru.otus.algo.testframe.service.TestExecutor;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 public class TestExecutorImpl implements TestExecutor {
@@ -30,18 +31,17 @@ public class TestExecutorImpl implements TestExecutor {
 		final Object result = testExecutable
 				.execute(testDataMap.get(key).getInputData());
 		final long endTime = System.currentTimeMillis() - start;
-		final Object expectedResult = testDataMap.get(key).getExpectedResult();
+		final List<String> expectedResult = testDataMap.get(key).getExpectedResult();
 		boolean testResult;
-		if (expectedResult instanceof List && result instanceof List) {
+		if (result instanceof List) {
 			List<String> resultList = (List<String>) result;
-			List<String> expectedResultList = (List<String>) expectedResult;
 			for (int i = 0; i < resultList.size(); i++) {
-				testResult = new EqualsBuilder().append(resultList.get(i), expectedResultList.get(i)).isEquals();
-				checkAssertException(key, resultList.get(i), expectedResultList.get(i), testResult);
-				logTestResult(key, resultList.get(i), endTime, expectedResultList.get(i));
+				testResult = new EqualsBuilder().append(resultList.get(i), expectedResult.get(i)).isEquals();
+				checkAssertException(key, resultList.get(i), expectedResult.get(i), testResult);
+				logTestResult(key, resultList.get(i), endTime, expectedResult.get(i));
 			}
 		} else {
-			testResult = new EqualsBuilder().append(result.toString(), expectedResult.toString()).isEquals();
+			testResult = new EqualsBuilder().append(result.toString(), expectedResult.get(0)).isEquals();
 			checkAssertException(key, result, expectedResult, testResult);
 			logTestResult(key, result, endTime, expectedResult);
 		}

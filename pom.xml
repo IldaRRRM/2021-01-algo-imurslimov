@@ -13,6 +13,7 @@
         <module>first-homework</module>
         <module>chess-third-homework</module>
         <module>base-struct-fourth</module>
+        <module>algebraic-algo-second</module>
     </modules>
 
     <packaging>pom</packaging>

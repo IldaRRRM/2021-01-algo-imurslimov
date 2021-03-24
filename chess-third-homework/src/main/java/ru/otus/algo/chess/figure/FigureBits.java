@@ -5,7 +5,6 @@ import ru.otus.algo.testframe.service.TestExecutable;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public abstract class FigureBits implements TestExecutable<List<String>>, ChessBigIntegerHandler {
@@ -41,13 +40,9 @@ public abstract class FigureBits implements TestExecutable<List<String>>, ChessB
     }
 
     @Override
-    public List<String> execute(Object... object) {
-        final List<Object> objects = Arrays.asList(object);
-        if (objects.size() == 1) {
-            final int startPosition = Integer.parseInt(objects.get(0).toString());
-            return getPossibleMoveCountAndMoveBits(startPosition);
-        }
-        throw new UnsupportedOperationException();
+    public List<String> execute(List<String> input) {
+        final int startPosition = Integer.parseInt(input.get(0));
+        return getPossibleMoveCountAndMoveBits(startPosition);
     }
 
     protected BigInteger getBitsFigureStartPosition(Number startPosition) {
