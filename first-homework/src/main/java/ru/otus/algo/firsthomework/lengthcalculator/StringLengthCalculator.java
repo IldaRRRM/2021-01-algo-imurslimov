@@ -8,11 +8,7 @@ import java.util.List;
 public class StringLengthCalculator implements TestExecutable<Integer> {
 
     @Override
-    public Integer execute(Object... object) {
-        final List<Object> objects = Arrays.asList(object);
-        if (objects.size() == 1) {
-            return objects.get(0).toString().length();
-        }
-        throw new UnsupportedOperationException();
+    public Integer execute(List<String> input) {
+        return input.get(0).toString().length();
     }
 }

@@ -5,13 +5,15 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @EqualsAndHashCode
 @RequiredArgsConstructor
 public class TestData {
 
-	private final Object inputData;
-	private final Object expectedResult;
+    private final List<String> inputData;
+    private final List<String> expectedResult;
 
 }

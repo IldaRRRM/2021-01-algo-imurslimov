@@ -1,6 +1,5 @@
 package ru.otus.algo.firsthomework.tickets;
 
-import java.util.Arrays;
 import java.util.List;
 import ru.otus.algo.testframe.service.TestExecutable;
 
@@ -34,12 +33,8 @@ public class HappyTickets implements TestExecutable<Long> {
     }
 
     @Override
-    public Long execute(Object... object) {
-        final List<Object> objects = Arrays.asList(object);
-        if (objects.size() == 1) {
-            final int inputTicketNumber = Integer.parseInt(objects.get(0).toString());
-            return getHappyTicketsCount(inputTicketNumber);
-        }
-        throw new UnsupportedOperationException();
+    public Long execute(List<String> input) {
+        final int inputTicketNumber = Integer.parseInt(input.get(0));
+        return getHappyTicketsCount(inputTicketNumber);
     }
 }
